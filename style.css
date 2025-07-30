@@ -1,115 +1,413 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+/* Importing Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-body{
-    background-color: azure;
+/* CSS Variables for Theme */
+:root {
+    --primary-color: #1db954;
+    --secondary-color: #1ed760;
+    --text-color: #121212;
+    --bg-color: #ffffff;
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --card-bg: #f8f8f8;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
 }
-*{
-    margin:0;
-    padding:0;
+
+[data-theme='dark'] {
+    --primary-color: #1db954;
+    --secondary-color: #1ed760;
+    --text-color: #ffffff;
+    --bg-color: #121212;
+    --nav-bg: rgba(18, 18, 18, 0.9);
+    --card-bg: #181818;
+    --shadow-color: rgba(0, 0, 0, 0.3);
 }
-nav{
-    font-family:'Ubuntu',sans-serif;
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
- nav u1{
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+/* Custom Cursor */
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.2s ease;
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.navbar.scrolled {
+    box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+.brand {
     display: flex;
     align-items: center;
-    list-style-type: none;
-    height: 65px;
-    background-color: black;
-    color: white;
- }
- nav u1 li{
-    padding: 0 12px;
- }
- .brand img{
-    width: 44px;
-    padding:0 8px ;
+    gap: 1rem;
+}
 
- }
- .brand{
+.brand img {
+    height: 40px;
+}
+
+.nav-links {
     display: flex;
-    align-items: center ;
-    font-weight: bolder;
-    font-size: 1.3rem;
- }
- .container{
-    min-height: 72vh;
-    background-color: black;
-    color: white;
-    font-family: 'Varela Round',sans-serif;
-    display:flex;
-    margin: 23px auto;
-    width:70%;
-    border-radius: 12px;
-    padding: 34px;
-    background-image: url('bg.jpg');
- }
- .bottom{
-    position:sticky;
-    height: 130px;
-    
-    background-color: black;
-    bottom:0;
-    color: white;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
     display: flex;
+    align-items: center;
     justify-content: center;
+    text-align: center;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s forwards;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s 0.3s forwards;
+}
+
+/* Music Visualizer */
+.music-visualizer {
+    display: flex;
+    gap: 5px;
+    margin-top: 2rem;
+}
+
+.bar {
+    width: 10px;
+    height: 30px;
+    background: white;
+    border-radius: 5px;
+    animation: visualizer 1.5s infinite;
+}
+
+.bar:nth-child(2) { animation-delay: 0.2s; }
+.bar:nth-child(3) { animation-delay: 0.4s; }
+.bar:nth-child(4) { animation-delay: 0.6s; }
+.bar:nth-child(5) { animation-delay: 0.8s; }
+
+/* Song Cards */
+.songs-section {
+    padding: 5rem 2rem;
+}
+
+.song-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.songItem {
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: var(--transition);
+    transform: translateY(50px);
+    opacity: 0;
+}
+
+.songItem.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.songItem:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px var(--shadow-color);
+}
+
+.songItem img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.song-info {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
- }
- .icons{
-   margin-top: 14px; 
-}
-.icons i{
-   cursor: pointer;
 }
 
- #myProgressBar{
-   width: 80vw;
-   cursor: pointer;
- }
- .songItemContainer{
-   margin-top: 74px;
+.play-btn {
+    background: var(--primary-color);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
 }
 
-.songItem{
-   height: 50px;
-   display: flex;
-   background-color: white;
-   color: black;
-   margin: 12px 0;
-   justify-content: space-between;
-   align-items: center;
-   border-radius: 34px;
+.play-btn:hover {
+    transform: scale(1.1);
 }
 
-.songItem img{
-   width: 43px;
-   margin: 0 23px;
-   border-radius: 34px;
+/* Parallax Section */
+.parallax-section {
+    padding: 5rem 2rem;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    color: white;
+    text-align: center;
 }
 
-.timestamp{
-   margin: 0 23px;
+/* Testimonials */
+.testimonials-section {
+    padding: 5rem 2rem;
+    background: var(--card-bg);
 }
 
-.timestamp i{
-   cursor: pointer;
+.testimonial-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
 }
 
-.songInfo{
-   position: absolute;
-   left: 10vw;
-   font-family: 'Varela Round', sans-serif;
+.testimonial {
+    background: var(--bg-color);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: var(--transition);
 }
 
-.songInfo img{
-   opacity: 1;
-   transition: opacity 0.4s ease-in;
+.testimonial:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px var(--shadow-color);
 }
 
-@media only screen and (max-width: 1100px) {
-   body {
-     background-color: aquamarine;
-   }
- }
+.testimonial img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 4rem 2rem;
+    background: var(--card-bg);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-icons a {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.newsletter-form input {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    background: transparent;
+    color: var(--text-color);
+}
+
+.newsletter-form button {
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.newsletter-form button:hover {
+    background: var(--secondary-color);
+}
+
+/* Music Player */
+.music-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    z-index: 1000;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 5px;
+    background: var(--card-bg);
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.player-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.controls button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.controls button:hover {
+    color: var(--primary-color);
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.volume-slider {
+    width: 100px;
+    cursor: pointer;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes visualizer {
+    0%, 100% { height: 30px; }
+    50% { height: 60px; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .song-cards {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .player-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
