@@ -4,52 +4,52 @@ gsap.registerPlugin(ScrollTrigger);
 // Song Data
 const songs = [
     {
-        name: "Summer Vibes",
+        name: "Excuses",
         filePath: "songs/1.mp3",
         coverPath: "covers/1.jpg"
     },
     {
-        name: "Chill Beats",
+        name: "I Wanna Be Yours",
         filePath: "songs/2.mp3",
         coverPath: "covers/2.jpg"
     },
     {
-        name: "Dance Party",
+        name: "Chand Sifarish",
         filePath: "songs/3.mp3",
         coverPath: "covers/3.jpg"
     },
     {
-        name: "Smooth Jazz",
+        name: "Afsos",
         filePath: "songs/4.mp3",
         coverPath: "covers/4.jpg"
     },
     {
-        name: "Rock Anthem",
+        name: "Yeh Tune Kya Kiya",
         filePath: "songs/5.mp3",
         coverPath: "covers/5.jpg"
     },
     {
-        name: "Pop Hits",
+        name: "Tu Hi Mera",
         filePath: "songs/6.mp3",
         coverPath: "covers/6.jpg"
     },
     {
-        name: "Electronic Beats",
+        name: "Jeene Laga Hoon",
         filePath: "songs/7.mp3",
         coverPath: "covers/7.jpg"
     },
     {
-        name: "Classical Piano",
+        name: "Saibo",
         filePath: "songs/8.mp3",
         coverPath: "covers/8.jpg"
     },
     {
-        name: "Acoustic Guitar",
+        name: "Bulleya",
         filePath: "songs/9.mp3",
         coverPath: "covers/9.jpg"
     },
     {
-        name: "Ambient Sounds",
+        name: "Tum Se Hi",
         filePath: "songs/10.mp3",
         coverPath: "covers/10.jpg"
     }
