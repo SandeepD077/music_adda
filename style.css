@@ -169,6 +169,15 @@ html {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     padding: 2rem 0;
+    grid-auto-flow: column;
+    grid-auto-columns: 16rem;
+    justify-content: stretch;
+    animation: animate 15s linear infinite;
+}
+@keyframes animate {
+   to{
+    transform: translateX(calc(-4 * 16rem));
+   }
 }
 
 .songItem {
