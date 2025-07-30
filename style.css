@@ -32,9 +32,18 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-color);
+    background: linear-gradient(-45deg, #1db954, #1ed760, #121212, #232526);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
     color: var(--text-color);
     transition: var(--transition);
+    min-height: 100vh;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
 }
 
 /* Custom Cursor */
@@ -159,12 +168,13 @@ body {
 }
 
 .songItem {
-    background: var(--card-bg);
+    background: #181818; /* or any solid color you like */
     border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    padding: 0;
+    margin: 16px;
     overflow: hidden;
-    transition: var(--transition);
-    transform: translateY(50px);
-    opacity: 0;
+    transition: box-shadow 0.2s;
 }
 
 .songItem.visible {
@@ -177,17 +187,43 @@ body {
     box-shadow: 0 10px 20px var(--shadow-color);
 }
 
-.songItem img {
-    width: 100%;
-    aspect-ratio: 1;
+.songItem img,
+.album-cover {
+    width: 180px;
+    height: 180px;
     object-fit: cover;
+    border-radius: 12px;
+    background: #222;
+    display: block;
+    margin: 0 auto 1rem auto;
 }
 
 .song-info {
-    padding: 1rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 1rem;
+    min-width: 0;
+}
+
+.player-cover {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: #222;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.song-name {
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
 }
 
 .play-btn {
@@ -305,36 +341,56 @@ body {
 /* Music Player */
 .music-player {
     position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
     bottom: 0;
-    left: 0;
     width: 100%;
-    background: var(--nav-bg);
-    backdrop-filter: blur(10px);
-    padding: 1rem;
+    max-width: 600px;
     z-index: 1000;
+    background: #111;
+    transition: background 0.3s, bottom 0.3s;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -2px 16px rgba(0,0,0,0.15);
+    padding: 1rem 2vw;
+}
+
+.music-player .progress-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.progress-bar-bg {
+    flex: 1;
+    height: 6px;
+    background: var(--card-bg, #333);
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
 }
 
 .progress-bar {
-    width: 100%;
-    height: 5px;
-    background: var(--card-bg);
-    cursor: pointer;
-    margin-bottom: 1rem;
+    height: 100%;
+    width: 0;
+    background: var(--primary-color, #1db954);
+    border-radius: 3px;
+    transition: width 0.2s;
 }
 
-.progress-bar::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 15px;
-    height: 15px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    cursor: pointer;
+#current-time, #total-duration {
+    color: #aaa;
+    font-size: 0.95rem;
+    min-width: 44px;
+    text-align: center;
 }
 
 .player-content {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .controls {
@@ -365,6 +421,59 @@ body {
 .volume-slider {
     width: 100px;
     cursor: pointer;
+}
+
+/* Music Player Button Styles */
+.music-player .controls button {
+    background: #222;
+    color: #1db954;
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+}
+
+.music-player .controls button:hover {
+    background: #333;
+}
+
+/* Light theme (default) */
+body[data-theme="light"] .music-player .controls button {
+    background: #222;
+    color: #1db954;
+}
+
+/* Dark theme */
+body[data-theme="dark"] .music-player .controls button {
+    background: #fff;
+    color: #111;
+}
+
+body[data-theme="dark"] .music-player .controls button:hover {
+    background: #e0e0e0;
+}
+
+/* General button theme for newsletter and others */
+body[data-theme="light"] button,
+body[data-theme="light"] .newsletter-form button {
+    background: #1db954;
+    color: #fff;
+}
+
+body[data-theme="dark"] button,
+body[data-theme="dark"] .newsletter-form button {
+    background: #111;
+    color: #1db954;
+}
+
+body[data-theme="dark"] .newsletter-form button:hover {
+    background: #222;
 }
 
 /* Animations */
@@ -409,5 +518,62 @@ body {
     .player-content {
         flex-direction: column;
         gap: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .player-cover {
+        width: 44px;
+        height: 44px;
+    }
+    .songItem img,
+    .album-cover {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Sticky music player at bottom, but moves up for footer */
+.music-player {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 100%;
+    max-width: 600px;
+    z-index: 1000;
+    background: #111;
+    transition: background 0.3s, bottom 0.3s;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -2px 16px rgba(0,0,0,0.15);
+    padding: 1rem 2vw;
+}
+
+/* Theme colors */
+body[data-theme="light"] .music-player {
+    background: #111;
+    color: #fff;
+}
+body[data-theme="dark"] .music-player {
+    background: #f5f5f5;
+    color: #222;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .music-player {
+        max-width: 98vw;
+        padding: 0.5rem 1vw;
+        border-radius: 12px 12px 0 0;
+        margin-bottom: 1rem;
+    }
+    .player-cover {
+        width: 44px;
+        height: 44px;
+    }
+    .songItem img,
+    .album-cover {
+        width: 100px;
+        height: 100px;
     }
 }
