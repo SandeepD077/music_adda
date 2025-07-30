@@ -66,6 +66,7 @@ const volumeSlider = document.querySelector('.volume-slider');
 const songNameElement = document.querySelector('.song-info .song-name');
 const themeToggle = document.getElementById('theme-toggle');
 const cursor = document.querySelector('.cursor');
+const playerCover = document.getElementById('player-cover');
 
 // Create song cards
 function createSongCards() {
@@ -74,7 +75,7 @@ function createSongCards() {
         const songItem = document.createElement('div');
         songItem.classList.add('songItem');
         songItem.innerHTML = `
-            <img src="${song.coverPath}" alt="${song.name}">
+            <img src="${song.coverPath}" alt="${song.name}" class="album-cover">
             <div class="song-info">
                 <span class="song-name">${song.name}</span>
                 <button class="play-btn" data-index="${index}">
@@ -179,6 +180,7 @@ function loadSong(index) {
     const song = songs[index];
     audioElement.src = song.filePath;
     songNameElement.textContent = song.name;
+    if (playerCover) playerCover.src = song.coverPath;
     currentSongIndex = index;
     updatePlayButtons();
 }
@@ -232,9 +234,22 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 audioElement.addEventListener('timeupdate', () => {
-    const progress = (audioElement.currentTime / audioElement.duration) * 100;
-    progressBar.style.width = progress + '%';
+    const progress = (audioElement.currentTime / audioElement.duration) * 100 || 0;
+    document.querySelector('.progress-bar').style.width = progress + '%';
+    document.getElementById('current-time').textContent = formatTime(audioElement.currentTime);
+    document.getElementById('total-duration').textContent = formatTime(audioElement.duration);
 });
+
+audioElement.addEventListener('loadedmetadata', () => {
+    document.getElementById('total-duration').textContent = formatTime(audioElement.duration);
+});
+
+function formatTime(sec) {
+    if (isNaN(sec)) return "00:00";
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+}
 
 progressBar.addEventListener('click', (e) => {
     const progressWidth = progressBar.clientWidth;
@@ -318,3 +333,24 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     type();
 });
+
+// Footer-aware sticky music player
+function adjustMusicPlayerForFooter() {
+    const player = document.querySelector('.music-player');
+    const footer = document.querySelector('footer');
+    if (!player || !footer) return;
+
+    const footerRect = footer.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const overlap = windowHeight - footerRect.top;
+
+    if (overlap > 0) {
+        player.style.bottom = overlap + 'px';
+    } else {
+        player.style.bottom = '0';
+    }
+}
+
+window.addEventListener('scroll', adjustMusicPlayerForFooter);
+window.addEventListener('resize', adjustMusicPlayerForFooter);
+document.addEventListener('DOMContentLoaded', adjustMusicPlayerForFooter);
