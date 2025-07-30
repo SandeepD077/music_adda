@@ -40,6 +40,10 @@ body {
     min-height: 100vh;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 @keyframes gradientBG {
     0% {background-position: 0% 50%;}
     50% {background-position: 100% 50%;}
@@ -226,6 +230,17 @@ body {
     max-width: 180px;
 }
 
+/* Default (light theme) */
+.music-player .song-name {
+    color: #fff;
+    transition: color 0.3s;
+}
+
+/* Dark theme */
+body[data-theme="dark"] .music-player .song-name {
+    color: #111;
+}
+
 .play-btn {
     background: var(--primary-color);
     border: none;
@@ -395,17 +410,24 @@ body {
 
 .controls {
     display: flex;
-    gap: 1rem;
     align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
 }
 
 .controls button {
-    background: none;
+    background: #222;
+    color: #1db954;
     border: none;
-    color: var(--text-color);
-    font-size: 1.2rem;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
     cursor: pointer;
-    transition: var(--transition);
 }
 
 .controls button:hover {
