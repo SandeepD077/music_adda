@@ -51,7 +51,9 @@
     <section class="parallax-section" id="albums" style="background-image: url('background.jpg');">
         <h2>Featured Albums</h2>
         <div class="song-cards">
-            <!-- Album cards will be added here -->
+            <img src="covers/1.jpg" alt="Album 1" class="album-cover">
+            <img src="covers/2.jpg" alt="Album 2" class="album-cover">
+            <!-- ... -->
         </div>
     </section>
 
@@ -84,9 +86,16 @@
 
     <!-- Music Player -->
     <div class="music-player">
-        <div class="progress-bar"></div>
+        <div class="progress-container">
+            <span id="current-time">00:00</span>
+            <div class="progress-bar-bg">
+                <div class="progress-bar"></div>
+            </div>
+            <span id="total-duration">00:00</span>
+        </div>
         <div class="player-content">
             <div class="song-info">
+                <img src="covers/1.jpg" alt="Cover" class="player-cover" id="player-cover">
                 <span class="song-name">No song playing</span>
             </div>
             <div class="controls">
