@@ -3,91 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify</title>
-     <link rel="stylesheet"href="./style.css"
-    
+    <title>Music Adda - Your Music Companion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
-<body>
-    <nav>
-        <u1>
-            <li class="brand"><img src="logo.png" alt="Spotify">Spotify</li>
-            <li>Home</li>
-            <li>About</li>
-        </u1>
+<body data-theme="light">
+    <!-- Cursor Effect -->
+    <div class="cursor"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="brand">
+            <img src="logo.png" alt="Music Adda Logo">
+            <span>Music Adda</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            
+            <li><a href="#albums">Albums</a></li>
+            
+            <li>
+                <button id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </li>
+        </ul>
     </nav>
-    <div class="container">
-        <div class="songList">
-            <h3>Best of NCS - No copyright Sounds</h3>
-            <div class="songItemContainer">
-                <div class="songItem">
-                    <img src="1.jpg" alt="1">
-                    <span class="songName">Execuses</span>
-                    <span class="songlistplay"><span class="timestamp">05:35<i id="0" class="far songItemPlay fa-circle-play"></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img src="2.jpg" alt="2">
-                    <span class="songName">I Wanna Be Yours</span>
-                    <span class="songlistplay"><span class="timestamp">05:35<i id="1" class="far songItemPlay fa-circle-play"></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img src="3.jpg" alt="3">
-                    <span class="songName">Chand Sifarish</span>
-                    <span class="songlistplay"><span class="timestamp">05:35<i id="2" class="far songItemPlay fa-circle-play"></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img src="4.jpg" alt="4">
-                    <span class="songName">Afsos</span>
-                    <span class="songlistplay"><span class="timestamp">05:35<i id="3" class="far songItemPlay fa-circle-play"></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img src="5.jpg" alt="5">
-                    <span class="songName" >Ye Tune Kya Kiya</span>
-                    <span class="songlistplay"><span class="timestamp">05:35<i id="4" class="far songItemPlay fa-circle-play"></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img src="6.jpg" alt="1">
-                    <span class="songName">Tu Hi Mera</span>
-                    <span class="songlistplay"><span class="timestamp">05:35<i id="5" class="far songItemPlay fa-circle-play"></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img src="7.jpg" alt="1">
-                    <span class="songName">Jeene Laga Hoon</span>
-                    <span class="songlistplay"><span class="timestamp">05:35<i id="6" class="far songItemPlay fa-circle-play"></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img src="8.jpg" alt="1">
-                    <span class="songName">Saibo</span>
-                    <span class="songlistplay"><span class="timestamp">05:35<i id="7" class="far songItemPlay fa-circle-play"></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img src="9.jpg" alt="1">
-                    <span class="songName">Bulleya</span>
-                    <span class="songlistplay"><span class="timestamp">05:35<i id="8" class="far v fa-circle-play"></i></span></span>
-                </div>
-                <div class="songItem">
-                    <img src="10.jpg" alt="1">
-                    <span class="songName">Tum se hi</span>
-                    <span class="songlistplay"><span class="timestamp">05:35<i id="9" class="far songItemPlay fa-circle-play"></i></span></span>
-                </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Welcome to Music Adda</h1>
+            <p>Your Ultimate Music Companion</p>
+            <div class="music-visualizer">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
             </div>
         </div>
-        <div class="songBanner"></div>
+    </section>
+
+    <!-- Albums Section with Parallax -->
+    <section class="parallax-section" id="albums" style="background-image: url('background.jpg');">
+        <h2>Featured Albums</h2>
+        <div class="song-cards">
+            <!-- Album cards will be added here -->
+        </div>
+    </section>
+
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Music Adda</h3>
+                <p>Your ultimate destination for music streaming and discovery.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="progress-bar"></div>
+        <div class="player-content">
+            <div class="song-info">
+                <span class="song-name">No song playing</span>
+            </div>
+            <div class="controls">
+                <button id="prev-btn"><i class="fas fa-backward"></i></button>
+                <button id="play-btn"><i class="fas fa-play"></i></button>
+                <button id="next-btn"><i class="fas fa-forward"></i></button>
+            </div>
+            <div class="volume-control">
+                <i class="fas fa-volume-up"></i>
+                <input type="range" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
+            </div>
+        </div>
     </div>
 
-    <div class="bottom">
-        <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100">
-        <div class="icons">
-            <!--fontawesome icons-->
-            <i class="fas fa-3x fa-step-backward"id="previous"></i>
-            <i class="far fa-3x fa-play-circle"id="masterPlay"></i>
-            <i class="fas fa-3x fa-step-forward"id="next"></i>
-        </div>
-        <div class="songInfo">
-            <img src="playing.gif" width="42px" alt=""id="gif"><span id="masterSongName">Execuses</span>
-        </div>
-        
-    </div>
-    <script src="https://kit.fontawesome.com/8da47196bc.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 </html>
