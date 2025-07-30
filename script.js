@@ -303,3 +303,18 @@ newsletterForm.addEventListener('submit', (e) => {
         button.style.background = '';
     }, 2000);
 });
+
+// Typewriter effect for hero section
+document.addEventListener("DOMContentLoaded", function() {
+    const text = "Welcome to Music Adda";
+    const typewriter = document.getElementById("typewriter");
+    let i = 0;
+    function type() {
+        if (i < text.length) {
+            typewriter.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, 80);
+        }
+    }
+    type();
+});
