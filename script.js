@@ -227,6 +227,21 @@ playBtn.addEventListener('click', togglePlay);
 nextBtn.addEventListener('click', nextSong);
 prevBtn.addEventListener('click', previousSong);
 
+// 10 seconds rewind and forward
+document.getElementById('rewind-btn').addEventListener('click', () => {
+    audioElement.currentTime = Math.max(0, audioElement.currentTime - 10);
+});
+document.getElementById('forward-btn').addEventListener('click', () => {
+    audioElement.currentTime = Math.min(audioElement.duration, audioElement.currentTime + 10);
+});
+
+// Progress bar seek
+document.querySelector('.progress-bar-bg').addEventListener('click', function(e) {
+    const rect = this.getBoundingClientRect();
+    const percent = (e.clientX - rect.left) / rect.width;
+    audioElement.currentTime = percent * audioElement.duration;
+});
+
 // Initialize song cards
 document.addEventListener('DOMContentLoaded', () => {
     createSongCards();
