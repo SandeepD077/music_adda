@@ -3,8 +3,8 @@
 
 /* CSS Variables for Theme */
 :root {
-    --primary-color: #1db954;
-    --secondary-color: #1ed760;
+    --primary-color: #1781b6;
+    --secondary-color: #0f0f0f;
     --text-color: #121212;
     --bg-color: #ffffff;
     --nav-bg: rgba(255, 255, 255, 0.9);
@@ -14,8 +14,8 @@
 }
 
 [data-theme='dark'] {
-    --primary-color: #1db954;
-    --secondary-color: #1ed760;
+    --primary-color: #1781b6;
+    --secondary-color: #0f0f0f;
     --text-color: #ffffff;
     --bg-color: #121212;
     --nav-bg: rgba(18, 18, 18, 0.9);
@@ -32,7 +32,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(-45deg, #1db954, #1ed760, #121212, #232526);
+    background: linear-gradient(-45deg, #1db954, #1781b6,#0f0f0f,#790c0c4d);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     color: var(--text-color);
@@ -69,7 +69,7 @@ html {
     left: 0;
     width: 100%;
     padding: 1rem 2rem;
-    background: var(--nav-bg);
+    background: #790c0c4d;
     backdrop-filter: blur(10px);
     z-index: 1000;
     transition: var(--transition);
@@ -607,4 +607,97 @@ body[data-theme="dark"] .music-player {
         width: 100px;
         height: 100px;
     }
+}
+
+/* Responsive Navbar */
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+}
+
+/* Responsive Hero Section */
+@media (max-width: 700px) {
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  .music-visualizer .bar {
+    width: 4px;
+    height: 18px;
+  }
+}
+
+/* Responsive Albums Section */
+@media (max-width: 900px) {
+  .song-cards {
+    gap: 1rem;
+  }
+  .album-cover {
+    width: 110px;
+    height: 110px;
+  }
+}
+@media (max-width: 600px) {
+  .song-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .album-cover {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+/* Responsive Footer */
+@media (max-width: 900px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+  .footer-section {
+    width: 100%;
+  }
+}
+
+/* Responsive Music Player */
+@media (max-width: 700px) {
+  .music-player {
+    padding: 0.5rem 0.5rem;
+  }
+  .player-content {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .player-cover {
+    width: 36px;
+    height: 36px;
+  }
+  .volume-slider {
+    width: 60px;
+  }
+}
+
+/* General small screen tweaks */
+@media (max-width: 500px) {
+  .navbar {
+    padding: 0.5rem;
+  }
+  .footer-content {
+    padding: 1rem 0.5rem;
+  }
+  .hero-content {
+    padding: 1rem 0.2rem;
+  }
 }
